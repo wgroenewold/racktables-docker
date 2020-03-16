@@ -1,8 +1,6 @@
 #!/bin/sh -e
 
-: "${DBNAME:=racktables}"
-: "${DBHOST:=mariadb}"
-: "${DBUSER:=racktables}"
+source .env
 
 if [ ! -e /opt/racktables/wwwroot/inc/secret.php ]; then
     cat > /opt/racktables/wwwroot/inc/secret.php <<EOF

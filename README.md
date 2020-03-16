@@ -14,4 +14,4 @@ the configuration if you intend to use it in production.
 
 ## Configuration
 
-Look at the env vars available in the `Dockerfile` and `entrypoint.sh`.
+Rename `.env.example` to `.env` and adjust variables.
