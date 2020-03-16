@@ -3,15 +3,11 @@ FROM alpine:latest
 # Author with no obligation to maintain
 LABEL author="Paul Tötterman <paul.totterman@iki.fi>"
 
-ENV DBHOST="mariadb" \
-    DBNAME="racktables" \
-    DBUSER="racktables" \
-    DBPASS=""
-
 COPY entrypoint.sh /entrypoint.sh
 RUN apk --no-cache add \
     ca-certificates \
     curl \
+    git \
     php7-bcmath \
     php7-curl \
     php7-fpm \
