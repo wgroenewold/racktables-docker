@@ -1,5 +1,5 @@
 # vim: set ft=dockerfile:
-FROM alpine:3.10
+FROM alpine:latest
 # Author with no obligation to maintain
 LABEL author="Paul Tötterman <paul.totterman@iki.fi>"
 
@@ -24,9 +24,9 @@ RUN apk --no-cache add \
     php7-session \
     php7-snmp \
     && chmod +x /entrypoint.sh \
-    && curl -sSLo /racktables.tar.gz 'https://github.com/RackTables/racktables/archive/RackTables-0.21.3.tar.gz' \
+    && curl -sSLo /racktables.tar.gz "https://github.com/RackTables/racktables/archive/$(git ls-remote --tags https://github.com/RackTables/racktables.git | tail -1 | cut -d\/ -f3).tar.gz" \
     && tar -xz -C /opt -f /racktables.tar.gz \
-    && mv /opt/racktables-RackTables-0.21.3 /opt/racktables \
+    && mv /opt/racktables-$(git ls-remote --tags https://github.com/RackTables/racktables.git | tail -1 | cut -d\/ -f3) /opt/racktables \
     && rm -f /racktables.tar.gz \
     && sed -i \
     -e 's|^listen =.*$|listen = 9000|' \
