@@ -31,6 +31,11 @@ RUN apk --no-cache add \
     -e 's|^;daemonize = .*|daemonize = no|' \
     /etc/php7/php-fpm.conf
 
+RUN apk add git \
+   && git clone https://github.com/collabnix/racktables-contribs \
+   && cd racktables-contribs/extensions \
+   && cp -r plugins/* /opt/racktables/plugins/
+
 VOLUME /opt/racktables/wwwroot
 EXPOSE 9000
 ENTRYPOINT ["/entrypoint.sh"]
